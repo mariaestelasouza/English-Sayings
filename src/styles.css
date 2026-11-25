@@ -1,0 +1,151 @@
+:root {
+  --bg: #f6f1fb;
+  --card: #ffffff;
+  --text: #2a2233;
+  --muted: #6b6178;
+  --border: #e4d9f0;
+  --accent: #8b5cf6;
+  --accent-soft: #ede4fd;
+  --proverb: #7c3aed;
+  --idiom: #0f766e;
+  --extra: #b45309;
+  --phrasal: #be123c;
+  --natural: #1d4ed8;
+  --business: #0369a1;
+  --polite: #15803d;
+  --rude: #b91c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17131d;
+    --card: #221c2b;
+    --text: #efe9f7;
+    --muted: #a99db8;
+    --border: #372d44;
+    --accent: #a78bfa;
+    --accent-soft: #33284a;
+    --proverb: #c4b5fd;
+    --idiom: #5eead4;
+    --extra: #fbbf24;
+    --phrasal: #fda4af;
+    --natural: #93c5fd;
+    --business: #7dd3fc;
+    --polite: #86efac;
+    --rude: #fca5a5;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+button { font: inherit; cursor: pointer; color: inherit; }
+
+.app { max-width: 880px; margin: 0 auto; padding: 32px 16px 64px; }
+
+.main-tabs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px;
+}
+.main-tab {
+  padding: 14px 12px; border-radius: 14px; border: 2px solid var(--border);
+  background: var(--card); font-weight: 700; font-size: 1rem; color: var(--muted);
+}
+.main-tab:hover { border-color: var(--accent); }
+.main-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.header h1 { margin: 0; font-size: 2rem; }
+.subtitle { margin: 6px 0 20px; color: var(--muted); }
+
+.type-tabs {
+  display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; margin-bottom: 16px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+}
+.type-tab {
+  flex: 1 1 auto; border: 0; background: transparent; padding: 10px 8px; border-radius: 8px;
+  font-weight: 600; color: var(--muted);
+}
+.type-tab.active { background: var(--accent); color: #fff; }
+.type-tab .count { margin-left: 6px; opacity: 0.8; font-weight: 500; }
+
+.toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.search {
+  flex: 1 1 260px; padding: 10px 14px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 1rem;
+}
+.search:focus { outline: 2px solid var(--accent); border-color: transparent; }
+.toolbar-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.toolbar-buttons button {
+  padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--card);
+}
+.toolbar-buttons button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.chip {
+  padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--card); font-size: 0.9rem;
+}
+.chip.active { background: var(--accent-soft); border-color: var(--accent); font-weight: 600; }
+.count {
+  font-size: 0.8em; color: var(--muted); margin-left: 4px;
+}
+
+.category { margin-bottom: 28px; }
+.category h2 { font-size: 1.2rem; margin: 0 0 10px; display: flex; align-items: center; gap: 6px; }
+
+.saying-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+
+.saying {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  transition: border-color 0.15s;
+}
+.saying.open { border-color: var(--accent); }
+
+.saying-head {
+  width: 100%; display: flex; align-items: center; gap: 10px; text-align: left;
+  border: 0; background: transparent; padding: 14px 16px;
+}
+.saying-head:hover { background: var(--accent-soft); }
+.saying-text { flex: 1; font-weight: 600; font-size: 1.02rem; }
+.saying-tags { display: flex; gap: 6px; }
+.tag {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 2px 8px; border-radius: 999px; border: 1px solid currentColor;
+}
+.tag-proverb { color: var(--proverb); }
+.tag-idiom { color: var(--idiom); }
+.tag-extra { color: var(--extra); }
+.tag-phrasal { color: var(--phrasal); }
+.tag-natural { color: var(--natural); }
+.tag-business { color: var(--business); }
+.tag-polite { color: var(--polite); }
+.plain.rude { color: var(--rude); }
+.plain.rude + .meaning strong { color: var(--polite); }
+.plain { margin: 12px 0 0; color: var(--muted); }
+.chevron { transition: transform 0.2s; color: var(--muted); }
+.saying.open .chevron { transform: rotate(180deg); }
+
+.saying-body { padding: 0 16px 16px; border-top: 1px solid var(--border); animation: drop 0.18s ease-out; }
+@keyframes drop { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.meaning { margin: 12px 0 10px; }
+.examples-title {
+  margin: 0 0 4px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--muted);
+}
+.examples { margin: 0; padding-left: 20px; }
+.examples li { margin-bottom: 4px; font-style: italic; }
+
+.empty { text-align: center; color: var(--muted); padding: 40px 0; }
+.footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+
+@media (max-width: 560px) {
+  .main-tab { font-size: 0.85rem; padding: 12px 8px; }
+  .saying-tags { display: none; }
+  .type-tab { font-size: 0.85rem; }
+}
