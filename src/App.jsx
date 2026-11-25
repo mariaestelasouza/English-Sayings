@@ -1,38 +1,40 @@
 import { useMemo, useState } from 'react';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  Chip,
+  Container,
+  CssBaseline,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Link,
+  InputAdornment,
+  Paper,
+  Stack,
+  Tab,
+  Tabs,
+  TextField,
+  ThemeProvider,
+  Typography,
+  createTheme,
+  useMediaQuery,
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import SearchIcon from '@mui/icons-material/Search';
+import CasinoIcon from '@mui/icons-material/Casino';
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
+import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import { CATEGORIES, SAYINGS, TYPES, TYPE_TAGS } from './data.js';
-
-function SayingItem({ item, open, onToggle }) {
-  return (
-    <li id={`s-${item.id}`} className={`saying ${open ? 'open' : ''}`}>
-      <button className="saying-head" onClick={onToggle} aria-expanded={open}>
-        <span className="saying-text">{item.saying}</span>
-        <span className="saying-tags">
-          {item.type !== 'polite' && <span className={`tag tag-${item.type}`}>{TYPE_TAGS[item.type]}</span>}
-          {!item.original && <span className="tag tag-extra">Extra</span>}
-        </span>
-        <span className="chevron" aria-hidden>▾</span>
-      </button>
-      {open && (
-        <div className="saying-body">
-          {item.plain && (
-            <p className={`plain ${item.type === 'polite' ? 'rude' : ''}`}>
-              <strong>{item.type === 'polite' ? '❌ Instead of saying:' : 'Instead of:'}</strong> "{item.plain}"
-            </p>
-          )}
-          <p className="meaning">
-            <strong>{{ business: 'When to use:', polite: '✅ Why it works:' }[item.type] || 'Meaning:'}</strong> {item.meaning}
-          </p>
-          <p className="examples-title">Examples</p>
-          <ol className="examples">
-            {item.examples.map((ex, i) => (
-              <li key={i}>{ex}</li>
-            ))}
-          </ol>
-        </div>
-      )}
-    </li>
-  );
-}
 
 const PRO_ITEMS = SAYINGS.filter((s) => s.type === 'polite');
 const OTHER_ITEMS = SAYINGS.filter((s) => s.type !== 'polite');
@@ -40,25 +42,166 @@ const OTHER_TYPES = Object.entries(TYPES).filter(([key]) => key !== 'polite');
 
 const SECTIONS = {
   pro: {
-    tab: '💼 How to Say It Professionally',
+    tab: 'How to Say It Professionally',
+    icon: <BusinessCenterIcon />,
     title: 'How to Say It Professionally',
     subtitle: `${PRO_ITEMS.length} rude or blunt phrases turned into respectful, professional English. Tap a phrase to see what to avoid, why the new version works, and two examples.`,
-    search: 'Search phrases, e.g. "busy", "wrong", "hurry"…',
+    search: 'Search phrases, e.g. "busy", "wrong", "hurry"',
   },
   sayings: {
-    tab: '📚 English Sayings & Expressions',
+    tab: 'English Sayings & Expressions',
+    icon: <MenuBookIcon />,
     title: 'English Sayings & Expressions',
     subtitle: `${OTHER_ITEMS.length} proverbs, idioms, phrasal verbs, natural phrases and business expressions, grouped by theme. Tap one to see its meaning and two examples.`,
-    search: 'Search sayings, meanings or examples…',
+    search: 'Search sayings, meanings or examples',
   },
 };
 
+// Colour for each type's label chip
+const TYPE_COLORS = {
+  proverb: 'secondary',
+  idiom: 'success',
+  phrasal: 'error',
+  natural: 'info',
+  business: 'primary',
+};
+
+const MEANING_LABEL = { business: 'When to use', polite: 'Why it works' };
+
+function PrivacyNotice({ open, onClose }) {
+  return (
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+      <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <PrivacyTipIcon color="primary" /> Privacy notice
+      </DialogTitle>
+      <DialogContent dividers>
+        <Typography variant="subtitle2" gutterBottom>
+          What we count
+        </Typography>
+        <Typography sx={{ mb: 2 }}>
+          Each time the app is opened, we add 1 to a counter for that day. We also count how many requests each part of
+          our server receives per day (for example, "app opened"). That is all we collect: numbers per day.
+        </Typography>
+        <Typography variant="subtitle2" gutterBottom>
+          What we do not collect
+        </Typography>
+        <Typography component="ul" sx={{ mt: 0, pl: 3 }}>
+          <li>No names, emails or accounts</li>
+          <li>No IP addresses or location</li>
+          <li>No cookies or tracking IDs</li>
+          <li>No record of what you search or which phrases you open</li>
+        </Typography>
+        <Typography variant="subtitle2" gutterBottom>
+          Why we count
+        </Typography>
+        <Typography sx={{ mb: 2 }}>
+          To see how many people use the app each day, so we know if it is helpful and worth improving.
+        </Typography>
+        <Typography variant="subtitle2" gutterBottom>
+          Questions
+        </Typography>
+        <Typography>Contact: [000 - Contact email for privacy questions]</Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+          Last updated: [000 - Date]
+        </Typography>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} variant="contained">
+          Got it
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
+function SayingItem({ item, expanded, onToggle }) {
+  const isPolite = item.type === 'polite';
+  return (
+    <Accordion
+      id={`s-${item.id}`}
+      expanded={expanded}
+      onChange={onToggle}
+      disableGutters
+      elevation={0}
+      slotProps={{ transition: { unmountOnExit: true } }}
+      sx={{
+        borderRadius: 2,
+        '&:before': { display: 'none' },
+        border: 1,
+        borderColor: expanded ? 'primary.main' : 'divider',
+      }}
+    >
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Stack direction="row" spacing={1} sx={{ alignItems: 'center', width: '100%', pr: 1 }}>
+          <Typography sx={{ fontWeight: 600, flex: 1 }}>{item.saying}</Typography>
+          <Stack direction="row" spacing={0.5} sx={{ display: { xs: 'none', sm: 'flex' } }}>
+            {!isPolite && (
+              <Chip size="small" variant="outlined" color={TYPE_COLORS[item.type]} label={TYPE_TAGS[item.type]} />
+            )}
+            {!item.original && <Chip size="small" variant="outlined" color="warning" label="Extra" />}
+          </Stack>
+        </Stack>
+      </AccordionSummary>
+      <AccordionDetails sx={{ borderTop: 1, borderColor: 'divider', pt: 2 }}>
+        {item.plain && (
+          <Stack direction="row" spacing={1} sx={{ mb: 1.5, alignItems: 'flex-start' }}>
+            {isPolite && <CancelIcon color="error" fontSize="small" sx={{ mt: '2px' }} />}
+            <Typography color={isPolite ? 'error' : 'text.secondary'}>
+              <strong>{isPolite ? 'Instead of saying:' : 'Instead of:'}</strong> "{item.plain}"
+            </Typography>
+          </Stack>
+        )}
+        <Stack direction="row" spacing={1} sx={{ mb: 2, alignItems: 'flex-start' }}>
+          {isPolite && <CheckCircleIcon color="success" fontSize="small" sx={{ mt: '2px' }} />}
+          <Typography>
+            <Box component="strong" sx={{ color: isPolite ? 'success.main' : 'inherit' }}>
+              {MEANING_LABEL[item.type] || 'Meaning'}:
+            </Box>{' '}
+            {item.meaning}
+          </Typography>
+        </Stack>
+        <Typography variant="overline" color="text.secondary">
+          Examples
+        </Typography>
+        <Box component="ol" sx={{ m: 0, pl: 3 }}>
+          {item.examples.map((ex, i) => (
+            <Typography component="li" key={i} sx={{ fontStyle: 'italic', mb: 0.5 }}>
+              {ex}
+            </Typography>
+          ))}
+        </Box>
+      </AccordionDetails>
+    </Accordion>
+  );
+}
+
 export default function App() {
+  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDark ? 'dark' : 'light',
+          primary: { main: prefersDark ? '#a78bfa' : '#7c3aed' },
+          background: prefersDark
+            ? { default: '#17131d', paper: '#221c2b' }
+            : { default: '#f6f1fb', paper: '#ffffff' },
+        },
+        shape: { borderRadius: 10 },
+        typography: {
+          fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+          button: { textTransform: 'none', fontWeight: 600 },
+        },
+      }),
+    [prefersDark]
+  );
+
   const [section, setSection] = useState('pro');
   const [query, setQuery] = useState('');
   const [type, setType] = useState('all');
   const [category, setCategory] = useState('all');
   const [openIds, setOpenIds] = useState(() => new Set());
+  const [privacyOpen, setPrivacyOpen] = useState(false);
 
   const byType = useMemo(
     () =>
@@ -131,97 +274,126 @@ export default function App() {
   const current = SECTIONS[section];
 
   return (
-    <div className="app">
-      <nav className="main-tabs" role="tablist">
-        {Object.entries(SECTIONS).map(([key, sec]) => (
-          <button
-            key={key}
-            role="tab"
-            aria-selected={section === key}
-            className={`main-tab ${section === key ? 'active' : ''}`}
-            onClick={() => changeSection(key)}
-          >
-            {sec.tab}
-          </button>
-        ))}
-      </nav>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container maxWidth="md" sx={{ py: 4 }}>
+        <Paper variant="outlined" sx={{ mb: 3, borderRadius: 3 }}>
+          <Tabs value={section} onChange={(_, v) => changeSection(v)} variant="fullWidth" aria-label="Main sections">
+            {Object.entries(SECTIONS).map(([key, sec]) => (
+              <Tab key={key} value={key} icon={sec.icon} iconPosition="start" label={sec.tab} sx={{ fontWeight: 700 }} />
+            ))}
+          </Tabs>
+        </Paper>
 
-      <header className="header">
-        <h1>{current.title}</h1>
-        <p className="subtitle">{current.subtitle}</p>
-      </header>
+        <Box component="header" sx={{ mb: 3 }}>
+          <Typography variant="h4" component="h1" sx={{ fontWeight: 700 }}>
+            {current.title}
+          </Typography>
+          <Typography color="text.secondary" sx={{ mt: 1 }}>
+            {current.subtitle}
+          </Typography>
+        </Box>
 
-      {section === 'sayings' && (
-      <div className="type-tabs" role="tablist">
-        {[['all', 'All'], ...OTHER_TYPES].map(([key, label]) => (
-          <button
-            key={key}
-            role="tab"
-            aria-selected={type === key}
-            className={`type-tab ${type === key ? 'active' : ''}`}
-            onClick={() => changeType(key)}
-          >
-            {label}
-            <span className="count">
-              {key === 'all' ? OTHER_ITEMS.length : OTHER_ITEMS.filter((s) => s.type === key).length}
-            </span>
-          </button>
-        ))}
-      </div>
-      )}
-
-      <div className="toolbar">
-        <input
-          className="search"
-          type="search"
-          placeholder={current.search}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <div className="toolbar-buttons">
-          <button onClick={expandAll}>Expand all</button>
-          <button onClick={collapseAll}>Collapse all</button>
-          <button className="primary" onClick={randomSaying}>🎲 Random</button>
-        </div>
-      </div>
-
-      <nav className="chips">
-        <button className={`chip ${category === 'all' ? 'active' : ''}`} onClick={() => setCategory('all')}>
-          All categories <span className="count">{byType.length}</span>
-        </button>
-        {Object.entries(CATEGORIES)
-          .filter(([key]) => counts[key])
-          .map(([key, cat]) => (
-            <button
-              key={key}
-              className={`chip ${category === key ? 'active' : ''}`}
-              onClick={() => setCategory(key)}
-            >
-              {cat.emoji} {cat.name} <span className="count">{counts[key]}</span>
-            </button>
-          ))}
-      </nav>
-
-      <main>
-        {grouped.length === 0 && <p className="empty">Nothing matches your search.</p>}
-        {grouped.map(([key, items]) => (
-          <section key={key} className="category">
-            <h2>
-              {CATEGORIES[key].emoji} {CATEGORIES[key].name}
-              <span className="count">{items.length}</span>
-            </h2>
-            <ul className="saying-list">
-              {items.map((item) => (
-                <SayingItem key={item.id} item={item} open={openIds.has(item.id)} onToggle={() => toggle(item.id)} />
+        {section === 'sayings' && (
+          <Paper variant="outlined" sx={{ mb: 2, borderRadius: 3 }}>
+            <Tabs value={type} onChange={(_, v) => changeType(v)} variant="scrollable" scrollButtons="auto" aria-label="Types">
+              {[['all', 'All'], ...OTHER_TYPES].map(([key, label]) => (
+                <Tab
+                  key={key}
+                  value={key}
+                  label={`${label} (${key === 'all' ? OTHER_ITEMS.length : OTHER_ITEMS.filter((s) => s.type === key).length})`}
+                />
               ))}
-            </ul>
-          </section>
-        ))}
-      </main>
+            </Tabs>
+          </Paper>
+        )}
 
-      <footer className="footer">
-        "Extra" marks entries added beyond your original lists.
-      </footer>
-    </div>
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ mb: 2 }}>
+          <TextField
+            fullWidth
+            size="small"
+            type="search"
+            placeholder={current.search}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              },
+            }}
+            sx={{ bgcolor: 'background.paper' }}
+          />
+          <Stack direction="row" spacing={1} sx={{ flexShrink: 0 }}>
+            <Button variant="outlined" startIcon={<UnfoldMoreIcon />} onClick={expandAll}>
+              Expand all
+            </Button>
+            <Button variant="outlined" startIcon={<UnfoldLessIcon />} onClick={collapseAll}>
+              Collapse
+            </Button>
+            <Button variant="contained" startIcon={<CasinoIcon />} onClick={randomSaying}>
+              Random
+            </Button>
+          </Stack>
+        </Stack>
+
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
+          <Chip
+            label={`All categories (${byType.length})`}
+            color="primary"
+            variant={category === 'all' ? 'filled' : 'outlined'}
+            onClick={() => setCategory('all')}
+          />
+          {Object.entries(CATEGORIES)
+            .filter(([key]) => counts[key])
+            .map(([key, cat]) => (
+              <Chip
+                key={key}
+                label={`${cat.emoji} ${cat.name} (${counts[key]})`}
+                color="primary"
+                variant={category === key ? 'filled' : 'outlined'}
+                onClick={() => setCategory(key)}
+              />
+            ))}
+        </Box>
+
+        <Box component="main">
+          {grouped.length === 0 && (
+            <Typography color="text.secondary" sx={{ textAlign: 'center', py: 5 }}>
+              Nothing matches your search.
+            </Typography>
+          )}
+          {grouped.map(([key, items]) => (
+            <Box component="section" key={key} sx={{ mb: 4 }}>
+              <Typography variant="h6" component="h2" sx={{ mb: 1.5, fontWeight: 700 }}>
+                {CATEGORIES[key].emoji} {CATEGORIES[key].name}{' '}
+                <Typography component="span" color="text.secondary" variant="body2">
+                  {items.length}
+                </Typography>
+              </Typography>
+              <Stack spacing={1}>
+                {items.map((item) => (
+                  <SayingItem key={item.id} item={item} expanded={openIds.has(item.id)} onToggle={() => toggle(item.id)} />
+                ))}
+              </Stack>
+            </Box>
+          ))}
+        </Box>
+
+        <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mt: 5 }}>
+          "Extra" marks entries added beyond the original source lists.
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mt: 1 }}>
+          We only count visits per day, nothing personal.{' '}
+          <Link component="button" variant="body2" onClick={() => setPrivacyOpen(true)}>
+            Privacy notice
+          </Link>
+        </Typography>
+        <PrivacyNotice open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
+      </Container>
+    </ThemeProvider>
   );
 }

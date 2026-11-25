@@ -34,3 +34,6 @@ Thumbs.db
 # Deployment
 .vercel/
 .netlify/
+
+# Usage counter database
+server/*.db

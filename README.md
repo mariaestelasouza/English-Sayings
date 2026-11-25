@@ -46,11 +46,50 @@ Preview the production build:
 npm run preview
 ```
 
+## Usage counter (visits per day)
+
+A small Python server counts how many times the app is opened each day, and how many requests each endpoint receives. It uses only the Python standard library, so there is nothing to install. Only numbers are stored, never IP addresses, cookies or personal data.
+
+Start it in a second terminal, alongside `npm run dev`:
+
+```bash
+python3 server/server.py
+```
+
+| Endpoint | What it does |
+|---|---|
+| `POST /api/visit` | The app calls this once each time it is opened |
+| `GET /api/stats` | Counts per day and per endpoint, as JSON |
+| `GET /admin` | Admin page with visits per day and requests per endpoint |
+
+Open the admin page at http://localhost:5173/admin (through the app) or http://127.0.0.1:8787/admin (directly). Unknown paths are counted as "other (not found)".
+
+The counts are saved in `server/usage.db` (not saved in git).
+
+### Admin login
+
+The admin page (and `/api/stats`) always asks for a username and password.
+
+- **First start:** if no password is set, the server creates a random one, saves it in `server/.env`, and prints it once in the terminal. The username is `admin`.
+- **Choose your own:** copy `server/.env.example` to `server/.env`, set `ADMIN_PASSWORD`, and restart the server.
+- **Forgot it?** Open `server/.env` to see it, or delete the `ADMIN_PASSWORD` line and restart to get a new one.
+- `server/.env` is ignored by git, so the password is never committed.
+- A wrong password waits 1 second before answering, to slow down guessing.
+- Your browser remembers the login until you close it. To log out, close the browser window or use a private window.
+
+When you put the server online, use a strong password and HTTPS (most hosting services provide HTTPS automatically), because the browser sends the password with every admin request. If the counter is not running, the app still works; visits just aren't counted.
+
+The app explains what is counted in its **Privacy notice** (link at the bottom of the page).
+
 ## Project structure
 
 ```
+server/
+├── server.py      Usage counter and admin page (Python, standard library only)
+└── .env.example   Example admin login (copy to server/.env)
 src/
-├── App.jsx        Main app: tabs, search, filters and dropdowns
+├── usage.js       Sends one visit count when the app opens
+├── App.jsx        Main app (MUI): tabs, search, filters, dropdowns, privacy notice
 ├── main.jsx       React entry point
 ├── styles.css     Styles (light and dark mode)
 ├── data.js        Categories, types and proverbs; combines all content into one list
@@ -93,6 +132,8 @@ Before using this app commercially, rewrite any source lists in your own words a
 
 - [React](https://react.dev/) 18
 - [Vite](https://vite.dev/) 6
+- [MUI (Material UI)](https://mui.com/)
+- Python 3 (usage counter)
 
 ## Licence
 
