@@ -1,21 +1,15 @@
-import { neon } from '@netlify/neon';
+import { getDatabase } from '@netlify/database';
 
-const sql = neon();
-
-export async function initializeDatabase() {
-  await sql`
-    CREATE TABLE IF NOT EXISTS requests (
-      day TEXT NOT NULL,
-      endpoint TEXT NOT NULL,
-      count INTEGER NOT NULL,
-      PRIMARY KEY (day, endpoint)
-    )
-  `;
+// The "requests" table is defined in db/schema.ts and created by the
+// migrations in netlify/database/migrations, applied by Netlify on deploy.
+let database;
+function sql(strings, ...values) {
+  database ??= getDatabase();
+  return database.sql(strings, ...values);
 }
 
 export async function countRequest(endpoint) {
   const day = new Date().toISOString().slice(0, 10);
-  await initializeDatabase();
   await sql`
     INSERT INTO requests (day, endpoint, count)
     VALUES (${day}, ${endpoint}, 1)
@@ -25,7 +19,6 @@ export async function countRequest(endpoint) {
 }
 
 export async function getStats(days = 365) {
-  await initializeDatabase();
   const rows = await sql`
     SELECT day, endpoint, count
     FROM requests
