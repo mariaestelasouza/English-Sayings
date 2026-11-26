@@ -1,8 +1,8 @@
-// Business English from the "200 Business Expressions" posters (01 to 09, expressions 1 to 180)
-// and the business collocations lists.
-// Format: [categoryKey, expression, whenToUse, example1, example2]
-// Spelling follows the source. Posters use US spelling (prioritize, apologize);
-// UK/Australian spelling is noted where it differs.
+
+
+
+
+
 
 export const BUSINESS_CATEGORIES = {
   bizIntro: { name: 'Networking & Introductions', emoji: '🤝' },
@@ -18,7 +18,7 @@ export const BUSINESS_CATEGORIES = {
 };
 
 export const BUSINESS_RAW = [
-  // ---------- Networking & Introductions (1 to 20) ----------
+  
   ['bizIntro', "Good morning. It's a pleasure to meet you.", 'A polite, formal greeting when you meet someone for the first time.',
     "Good morning. It's a pleasure to meet you. I'm Ana from the finance team.",
     '"This is our new client, Mr Lee." "Good morning. It\'s a pleasure to meet you."'],
@@ -80,7 +80,7 @@ export const BUSINESS_RAW = [
     'Welcome to the team. I look forward to working with you.',
     'Thanks for signing the agreement. I look forward to working with you.'],
 
-  // ---------- Meetings (21 to 40) ----------
+  
   ['bizMeetings', 'Could we schedule a meeting?', 'Asks to set a time to meet.',
     'Could we schedule a meeting to discuss the budget?',
     'Could we schedule a meeting for later this week?'],
@@ -142,7 +142,7 @@ export const BUSINESS_RAW = [
     "Thanks, everyone. I'll send the meeting minutes afterward.",
     "Don't worry about taking notes. I'll send the meeting minutes afterward."],
 
-  // ---------- Phone & Video Calls (41 to 60) ----------
+  
   ['bizCalls', 'May I speak to the person in charge?', 'Politely asks to talk to the manager or decision maker.',
     'Hello, may I speak to the person in charge of orders?',
     'I have a complaint. May I speak to the person in charge?'],
@@ -204,7 +204,7 @@ export const BUSINESS_RAW = [
     'Thank you for your time today. It was very useful.',
     'Thank you for your time today. Speak soon.'],
 
-  // ---------- Emails (61 to 80) ----------
+  
   ['bizEmail', "I'm writing to inquire about your services.", 'A formal email opening when asking for information. (UK/AU: enquire)',
     "Dear Sir or Madam, I'm writing to inquire about your services.",
     "I'm writing to inquire about your cleaning services for our office."],
@@ -266,7 +266,7 @@ export const BUSINESS_RAW = [
     'Please feel free to contact me with any questions about the offer.',
     'Welcome aboard. Please feel free to contact me with any questions.'],
 
-  // ---------- Teamwork & Collaboration (81 to 100) ----------
+  
   ['bizTeam', 'Could you help me with this task?', 'Politely asks a colleague for help.',
     "I'm stuck on this spreadsheet. Could you help me with this task?",
     'Could you help me with this task when you have a minute?'],
@@ -328,7 +328,7 @@ export const BUSINESS_RAW = [
     'Thank you for your cooperation during the office move.',
     'Please arrive on time. Thank you for your cooperation.'],
 
-  // ---------- Presentations (101 to 120) ----------
+  
   ['bizPresent', 'Let me walk you through this presentation.', 'Starts guiding the audience through your slides.',
     "Good morning, everyone. Let me walk you through this presentation.",
     'Let me walk you through this presentation on our new product.'],
@@ -390,7 +390,7 @@ export const BUSINESS_RAW = [
     "That's all from me. Thank you for your attention.",
     'Thank you for your attention. Any questions?'],
 
-  // ---------- Negotiation (121 to 140) ----------
+  
   ['bizNegotiate', "Let's explore a few possible solutions.", 'Suggests looking at different options.',
     "We disagree on price. Let's explore a few possible solutions.",
     "Let's explore a few possible solutions before we decide."],
@@ -452,7 +452,7 @@ export const BUSINESS_RAW = [
     'Thank you for signing. We look forward to a successful partnership.',
     'We look forward to a successful partnership with your team.'],
 
-  // ---------- Deadlines & Progress (141 to 160) ----------
+  
   ['bizDeadlines', 'Could you provide a timeline for this project?', 'Asks for a schedule of key dates.',
     'Before we agree, could you provide a timeline for this project?',
     'Could you provide a timeline for this project, including each stage?'],
@@ -514,7 +514,7 @@ export const BUSINESS_RAW = [
     'Thank you for your continued support this year.',
     'We value your business. Thank you for your continued support.'],
 
-  // ---------- Problem Solving (161 to 180) ----------
+  
   ['bizProblems', 'We need to identify the root cause of the problem.', 'Says you must find the real reason behind a problem.',
     'Fixing it again won\'t help. We need to identify the root cause of the problem.',
     'We need to identify the root cause of the problem before it happens again.'],
@@ -576,7 +576,7 @@ export const BUSINESS_RAW = [
     'The test is done. We should review the outcome before proceeding.',
     'We should review the outcome before proceeding to stage two.'],
 
-  // ---------- Business Collocations ----------
+  
   ['bizCollocations', 'Meet a deadline', 'Finish on time.',
     'We worked late to meet the deadline.',
     'If we miss this deadline, the client will be unhappy.'],

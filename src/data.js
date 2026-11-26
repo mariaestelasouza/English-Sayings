@@ -4,8 +4,8 @@ import { NATURAL_RAW } from './natural.js';
 import { BUSINESS_RAW, BUSINESS_CATEGORIES } from './business.js';
 import { POLITE_RAW, POLITE_CATEGORIES } from './polite.js';
 
-// Each saying: [categoryKey, saying, meaning, example1, example2, fromOriginalList]
-// fromOriginalList = true for sayings taken from the provided images, false for extra sayings added.
+
+
 
 export const CATEGORIES = {
   relationships: { name: 'Friendship & Relationships', emoji: '🤝' },
@@ -52,7 +52,7 @@ export const TYPE_TAGS = {
 };
 
 const RAW = [
-  // ---------- Friendship & Relationships ----------
+  
   ['relationships', 'A friend in need is a friend indeed', 'A true friend is the one who helps you when you are in trouble.',
     'When I lost my job, Sam paid my rent for a month. A friend in need is a friend indeed.',
     'Lots of people visited when I was popular, but only Mia stayed when things got hard. A friend in need is a friend indeed.', true],
@@ -93,7 +93,7 @@ const RAW = [
     'He failed the test and kept telling everyone how hard it was. Misery loves company.',
     'The two unhappy workers spent every break complaining together. Misery loves company.', false],
 
-  // ---------- Words & Communication ----------
+  
   ['communication', 'Actions speak louder than words', 'What you do shows your true intentions more than what you say.',
     'He says he will help with the housework, but he never does. Actions speak louder than words.',
     'She never made big promises, but she was always there to help. Actions speak louder than words.', true],
@@ -122,7 +122,7 @@ const RAW = [
     'He joked that I work too much, but many a true word is spoken in jest.',
     'She laughed and said she was the only one who cleans, but many a true word is spoken in jest.', false],
 
-  // ---------- Appearances & Truth ----------
+  
   ['appearances', 'All that glitters is not gold', 'Something that looks attractive or valuable is not always good.',
     'The job offered a big salary, but the hours were terrible. All that glitters is not gold.',
     'The flashy car broke down every month. All that glitters is not gold.', true],
@@ -148,7 +148,7 @@ const RAW = [
     'He keeps shouting that he will quit, but barking dogs seldom bite.',
     'Don\'t worry about the neighbour\'s threats. Barking dogs seldom bite.', false],
 
-  // ---------- Money & Value ----------
+  
   ['money', 'A penny saved is a penny earned', 'Saving money is as valuable as earning it.',
     'She makes her lunch every day instead of buying it. A penny saved is a penny earned.',
     'Turning off the lights saves on the power bill. A penny saved is a penny earned.', true],
@@ -174,7 +174,7 @@ const RAW = [
     'Grandma turns leftovers into soup. Waste not, want not.',
     'Keep those spare screws in a jar. Waste not, want not.', false],
 
-  // ---------- Time & Patience ----------
+  
   ['time', 'Better late than never', 'It is better to do something late than not do it at all.',
     'He finally apologised after a year. Better late than never.',
     'She started studying for her degree at 45. Better late than never.', true],
@@ -206,7 +206,7 @@ const RAW = [
     'The holiday was amazing, but all good things must come to an end.',
     'Our favourite TV show finished after ten seasons. All good things must come to an end.', false],
 
-  // ---------- Hard Work & Effort ----------
+  
   ['effort', 'Practice makes perfect', 'Doing something again and again makes you better at it.',
     'She plays the piano every day. Practice makes perfect.',
     'Keep speaking English, even if you make mistakes. Practice makes perfect.', true],
@@ -238,7 +238,7 @@ const RAW = [
     'Saving $10 a week helped her buy a car. Little strokes fell great oaks.',
     'He learned five new words a day and became fluent. Little strokes fell great oaks.', false],
 
-  // ---------- Caution & Planning ----------
+  
   ['caution', "Don't put all your eggs in one basket", 'Do not risk everything on one plan or opportunity.',
     'He invests in different companies. He never puts all his eggs in one basket.',
     'Apply to several universities. Don\'t put all your eggs in one basket.', true],
@@ -282,7 +282,7 @@ const RAW = [
     'The plan has some problems, but don\'t throw the baby out with the bathwater.',
     'Fix the bugs in the app; don\'t throw the baby out with the bathwater and start again.', false],
 
-  // ---------- Opportunity & Luck ----------
+  
   ['opportunity', 'Make hay while the sun shines', 'Take advantage of good opportunities while they last.',
     'He saved money while business was good. He made hay while the sun shone.',
     'Tourist season is short, so the café opens every day. Make hay while the sun shines.', true],
@@ -317,7 +317,7 @@ const RAW = [
     'I walk to work, so I exercise and save money. I kill two birds with one stone.',
     'She visited her parents and met a client in the same trip. Two birds with one stone.', false],
 
-  // ---------- Attitude & Acceptance ----------
+  
   ['attitude', 'The grass is always greener on the other side', 'People often think others have a better life than they do.',
     'He envies his cousin\'s job, but his cousin envies his. The grass is always greener on the other side.',
     'She moved cities for a better life and missed her old one. The grass is always greener.', true],
@@ -358,7 +358,7 @@ const RAW = [
     'The free laptop is a bit old, but don\'t look a gift horse in the mouth.',
     'She complained about the free concert seats. Don\'t look a gift horse in the mouth!', false],
 
-  // ---------- Teamwork & Unity ----------
+  
   ['teamwork', 'Two heads are better than one', 'Two people working together can solve problems more easily.',
     'They solved the puzzle together. Two heads are better than one.',
     'Can you help me with this maths problem? Two heads are better than one.', true],
@@ -381,7 +381,7 @@ const RAW = [
     'Pass the ball more. There\'s no "I" in team.',
     'She shared the credit with her colleagues. There\'s no "I" in team.', false],
 
-  // ---------- Actions & Consequences ----------
+  
   ['consequences', 'You reap what you sow', 'Your actions decide the results you get.',
     'He worked hard all year and got top marks. You reap what you sow.',
     'She was rude to everyone and now has no friends. You reap what you sow.', true],
@@ -401,7 +401,7 @@ const RAW = [
     'He bragged he would win easily and then lost. Pride comes before a fall.',
     'She didn\'t study because she thought it was easy, and she failed. Pride comes before a fall.', false],
 
-  // ---------- Character & Behaviour ----------
+  
   ['character', 'Honesty is the best policy', 'Telling the truth is always the best choice.',
     'She admitted her mistake to her boss. Honesty is the best policy.',
     'Tell the customer about the delay. Honesty is the best policy.', true],
@@ -433,7 +433,7 @@ const RAW = [
     'The card was homemade, but it\'s the thought that counts.',
     'He forgot the flowers but cooked dinner. It\'s the thought that counts.', false],
 
-  // ---------- Knowledge & Learning ----------
+  
   ['learning', 'Knowledge is power', 'Education and information give you strength and advantage.',
     'He read the contract carefully and got a better deal. Knowledge is power.',
     'Learning about your rights at work helps you. Knowledge is power.', true],
@@ -459,7 +459,7 @@ const RAW = [
     'Learn simple sentences before writing essays. Learn to walk before you run.',
     'Start with easy recipes before cooking a three-course meal. Learn to walk before you run.', false],
 
-  // ---------- Health & Happiness ----------
+  
   ['health', 'An apple a day keeps the doctor away', 'Healthy habits help prevent illness.',
     'She eats fruit every day. An apple a day keeps the doctor away.',
     'Take your lunch with a salad. An apple a day keeps the doctor away.', true],

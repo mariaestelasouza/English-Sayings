@@ -1,10 +1,10 @@
-// Idioms & expressions from the pasted list.
-// Format: [categoryKey, idiom, meaning, example1, example2]
-// Duplicates of proverbs already in data.js were left out.
-// A few meanings were corrected where the source list was inaccurate.
+
+
+
+
 
 export const IDIOMS_RAW = [
-  // ---------- Money & Value ----------
+  
   ['money', 'A dime a dozen', 'Very common, cheap or easy to find.',
     'Coffee shops are a dime a dozen around here.',
     'Cheap phone chargers are a dime a dozen online.'],
@@ -27,7 +27,7 @@ export const IDIOMS_RAW = [
     'Put your wallet away. Dinner is on me.',
     'The coffees are on me today.'],
 
-  // ---------- Words & Communication ----------
+  
   ['communication', 'A penny for your thoughts', 'A friendly way to ask someone what they are thinking.',
     'A penny for your thoughts? You seem far away.',
     'You\'ve been quiet all evening. A penny for your thoughts?'],
@@ -101,7 +101,7 @@ export const IDIOMS_RAW = [
     'I said our team would lose, so I had to eat crow when they won.',
     'The critic ate crow after the film became a huge hit.'],
 
-  // ---------- Describing People ----------
+  
   ['people', 'All bark and no bite', 'Someone who makes threats but does not act on them.',
     'Don\'t worry about him. He\'s all bark and no bite.',
     'The coach shouts a lot, but he\'s all bark and no bite.'],
@@ -145,7 +145,7 @@ export const IDIOMS_RAW = [
     'He drinks like a fish at every party.',
     'His doctor told him to stop drinking like a fish.'],
 
-  // ---------- Friendship & Relationships ----------
+  
   ['relationships', 'Flesh and blood', 'Your family or relatives.',
     'He\'s my own flesh and blood. I can\'t turn my back on him.',
     'How could she treat her own flesh and blood like that?'],
@@ -165,7 +165,7 @@ export const IDIOMS_RAW = [
     'We\'re both unemployed, so we\'re in the same boat.',
     'Don\'t worry, everyone in the class is in the same boat.'],
 
-  // ---------- Problems & Difficulty ----------
+  
   ['problems', 'Asking for trouble', 'Doing something that is likely to cause problems.',
     'Coming home late every night is asking for trouble.',
     'Driving without insurance is asking for trouble.'],
@@ -218,7 +218,7 @@ export const IDIOMS_RAW = [
     'You\'re barking up the wrong tree. I don\'t know where your keys are.',
     'If you think I ate your cake, you\'re barking up the wrong tree.'],
 
-  // ---------- Feelings & Mood ----------
+  
   ['feelings', 'Blow up', 'To suddenly become very angry.',
     'He blew up at me when I spilled coffee on his laptop.',
     'Mum will blow up if she sees this mess.'],
@@ -271,7 +271,7 @@ export const IDIOMS_RAW = [
     'Learn guitar? I\'m all over it!',
     'Don\'t worry about the report. She\'s all over it.'],
 
-  // ---------- Hard Work & Effort ----------
+  
   ['effort', 'Ace it', 'To do something extremely well, like a test.',
     'I studied all night and aced my maths test.',
     '"How did the English exam go?" "I aced it!"'],
@@ -318,7 +318,7 @@ export const IDIOMS_RAW = [
     'The builder cut corners, and now the roof leaks.',
     'Don\'t cut corners on safety.'],
 
-  // ---------- Time & Patience ----------
+  
   ['time', 'All of a sudden', 'Quickly and unexpectedly.',
     'All of a sudden, the power went out.',
     'All of a sudden, it started to rain.'],
@@ -347,7 +347,7 @@ export const IDIOMS_RAW = [
     'I dozed off watching TV.',
     'He dozed off in the meeting.'],
 
-  // ---------- Caution & Planning ----------
+  
   ['caution', 'Fly by the seat of your pants', 'To do something without planning, relying on instinct.',
     'I had no time to prepare, so I flew by the seat of my pants.',
     'They travelled around Europe flying by the seat of their pants.'],
@@ -364,7 +364,7 @@ export const IDIOMS_RAW = [
     'The design didn\'t work, so it\'s back to the drawing board.',
     'Customers hated the product, so we went back to the drawing board.'],
 
-  // ---------- Knowledge & Learning ----------
+  
   ['learning', 'Brush up on', 'To review or practise a skill to improve it.',
     'I need to brush up on my Spanish before my trip.',
     'She brushed up on her maths before the test.'],
@@ -384,7 +384,7 @@ export const IDIOMS_RAW = [
     'They kept me in the dark about the surprise party.',
     'I\'m completely in the dark about the new plan.'],
 
-  // ---------- Attitude & Acceptance ----------
+  
   ['attitude', 'A blessing in disguise', 'Something that seems bad at first but turns out to be good.',
     'Losing my job was a blessing in disguise. I found a better one.',
     'Missing the bus was a blessing in disguise. I met my future wife at the stop.'],
@@ -407,7 +407,7 @@ export const IDIOMS_RAW = [
     'This party is for the birds. Let\'s go somewhere else.',
     'Waiting in long queues is for the birds.'],
 
-  // ---------- Actions & Consequences ----------
+  
   ['consequences', 'Caught red-handed', 'Caught while doing something wrong.',
     'The police caught the thieves red-handed.',
     'He was caught red-handed eating the last biscuit.'],
@@ -424,7 +424,7 @@ export const IDIOMS_RAW = [
     'As the boss, he calls the shots.',
     'At home, my mum calls the shots.'],
 
-  // ---------- Character & Behaviour ----------
+  
   ['character', 'The customer is always right', 'Businesses should try to give customers what they want.',
     'We gave her a refund. The customer is always right.',
     'Our manager says the customer is always right, even when they\'re not.'],
@@ -444,7 +444,7 @@ export const IDIOMS_RAW = [
     'Half the team jumped ship to a rival company.',
     'I\'m thinking of jumping ship. I\'m not happy here.'],
 
-  // ---------- Everyday Expressions ----------
+  
   ['everyday', 'A piece of cake', 'Something very easy to do.',
     'The test was a piece of cake. I knew all the answers.',
     'Making pancakes is a piece of cake.'],

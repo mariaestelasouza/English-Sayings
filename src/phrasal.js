@@ -1,10 +1,10 @@
-// Phrasal verbs from the "500 Important Phrasal Verbs" images.
-// The source list repeats many verbs, so repeats are merged into one entry with all meanings.
-// "Hang on" and "Hang out" are already in the idioms list, so they are not repeated here.
-// Format: [categoryKey, phrasalVerb, meaning, example1, example2]
+
+
+
+
 
 export const PHRASAL_RAW = [
-  // ---------- Daily Life & Home ----------
+  
   ['daily', 'Get up', 'Get out of bed.', 'I get up at 6 every morning.', 'What time did you get up today?'],
   ['daily', 'Wake up', 'Stop sleeping.', 'I woke up at 3 am and couldn\'t get back to sleep.', 'Wake up! We\'re going to be late.'],
   ['daily', 'Turn on', 'Switch on (a light, machine, etc.).', 'Can you turn on the lights, please?', 'She turned on the TV to watch the news.'],
@@ -54,7 +54,7 @@ export const PHRASAL_RAW = [
   ['daily', 'Hand back', 'Return something to the person who gave it.', 'The teacher handed back our tests.', 'Please hand back your keys when you leave.'],
   ['daily', 'Give back', 'Return something.', 'Give me back my phone!', 'He gave back the money he borrowed.'],
 
-  // ---------- Travel & Movement ----------
+  
   ['travel', 'Set off', 'Start a journey.', 'We set off at dawn to avoid the traffic.', 'They set off for the airport at 5.'],
   ['travel', 'Set out', 'Start a journey; start with a clear aim.', 'They set out across the desert.', 'She set out to write a novel in one year.'],
   ['travel', 'Get in', 'Enter a car or taxi; arrive.', 'Get in the car, we\'re late!', 'What time does your train get in?'],
@@ -90,7 +90,7 @@ export const PHRASAL_RAW = [
   ['travel', 'Check out (of)', 'Leave a hotel after paying; look at or examine something.', 'We checked out of the hotel at 10.', 'Check out this new café. It\'s great!'],
   ['travel', 'Go by', 'Pass (time); go past.', 'Time goes by so fast.', 'Weeks went by without any news.'],
 
-  // ---------- Work & Tasks ----------
+  
   ['work', 'Carry out', 'Do or complete a task.', 'The team carried out a customer survey.', 'Carry out the instructions carefully.'],
   ['work', 'Deal with', 'Handle or manage something.', 'I\'ll deal with the complaint.', 'She deals with stress very well.'],
   ['work', 'Work on', 'Spend time doing or improving something.', 'I\'m working on a new project.', 'You need to work on your pronunciation.'],
@@ -164,7 +164,7 @@ export const PHRASAL_RAW = [
   ['work', 'Pass down', 'Give to a younger generation.', 'This ring was passed down from my grandmother.', 'The recipe has been passed down for years.'],
   ['work', 'Come up with', 'Think of an idea or plan.', 'She came up with a great idea.', 'Can you come up with a better name?'],
 
-  // ---------- Words & Communication ----------
+  
   ['communication', 'Call back', 'Return a phone call.', 'I\'ll call you back in five minutes.', 'Can you ask her to call me back?'],
   ['communication', 'Call up', 'Phone someone; ask someone to join a team or the army.', 'I called up my old friend last night.', 'He was called up to the national team.'],
   ['communication', 'Hang up', 'End a phone call; hang clothes.', 'She hung up on me!', 'Hang up your coat by the door.'],
@@ -192,7 +192,7 @@ export const PHRASAL_RAW = [
   ['communication', 'Call for', 'Require; publicly ask for.', 'This calls for a celebration!', 'Protesters called for change.'],
   ['communication', 'Make against', 'Argue or work against something (formal and rare).', 'These facts make against his claim.', 'His age may make against him in the election.'],
 
-  // ---------- Friendship & Relationships ----------
+  
   ['relationships', 'Look after', 'Take care of.', 'Can you look after my cat this weekend?', 'She looks after her elderly mother.'],
   ['relationships', 'Take care (of)', 'Look after; deal with something.', 'Take care of yourself!', 'Don\'t worry, I\'ll take care of the bill.'],
   ['relationships', 'Care for', 'Look after someone; like something (often negative).', 'Nurses care for patients day and night.', 'I don\'t really care for spicy food.'],
@@ -235,7 +235,7 @@ export const PHRASAL_RAW = [
   ['relationships', 'Believe in', 'Have faith in; think something exists.', 'I believe in you.', 'Do you believe in ghosts?'],
   ['relationships', 'Keep out of', 'Avoid getting involved in.', 'Keep out of trouble!', 'Keep out of their argument.'],
 
-  // ---------- Feelings & Mood ----------
+  
   ['feelings', 'Calm down', 'Become less angry, upset or excited.', 'Calm down and tell me what happened.', 'The baby finally calmed down.'],
   ['feelings', 'Cheer up', 'Become happier; make someone happier.', 'Cheer up! It\'s not that bad.', 'The flowers really cheered her up.'],
   ['feelings', 'Blow up at', 'Shout angrily at someone.', 'He blew up at me for being late.', 'Don\'t blow up at the kids. They\'re just tired.'],
@@ -253,7 +253,7 @@ export const PHRASAL_RAW = [
   ['feelings', 'Feel up to', 'Feel well or strong enough to do something.', 'Do you feel up to a short walk?', 'I don\'t feel up to going out tonight.'],
   ['feelings', 'Wake up to', 'Realise or become aware of something.', 'People are waking up to the cost of fast fashion.', 'He finally woke up to the fact that he was unhappy.'],
 
-  // ---------- Problems & Difficulty ----------
+  
   ['problems', 'Break down', 'Stop working; start crying; fail.', 'Our car broke down on the highway.', 'She broke down in tears.'],
   ['problems', 'Fall apart', 'Break into pieces; stop working well.', 'My old shoes are falling apart.', 'Their marriage fell apart.'],
   ['problems', 'Fall through', 'Fail to happen.', 'The house sale fell through.', 'Our holiday plans fell through.'],
@@ -275,7 +275,7 @@ export const PHRASAL_RAW = [
   ['problems', 'Die out', 'Disappear completely.', 'Dinosaurs died out millions of years ago.', 'That old tradition has died out.'],
   ['problems', 'Go through', 'Experience something difficult; examine.', 'She\'s going through a hard time.', 'Let\'s go through the contract together.'],
 
-  // ---------- Knowledge & Learning ----------
+  
   ['learning', 'Find out (about)', 'Discover information.', 'I found out the truth yesterday.', 'Find out about the course on the website.'],
   ['learning', 'Look up', 'Search for information; (things) improve.', 'Look up the word in a dictionary.', 'Things are finally looking up.'],
   ['learning', 'Look for', 'Search for.', 'I\'m looking for my keys.', 'She\'s looking for a new job.'],
@@ -298,7 +298,7 @@ export const PHRASAL_RAW = [
   ['learning', 'Add up', 'Make sense; calculate a total.', 'His story doesn\'t add up.', 'Can you add up these numbers?'],
   ['learning', 'Set apart', 'Make someone or something different or special.', 'Her voice sets her apart from other singers.', 'What sets this product apart?'],
 
-  // ---------- Money & Value ----------
+  
   ['money', 'Pay back', 'Return money you owe.', 'I\'ll pay you back tomorrow.', 'He paid back the loan in two years.'],
   ['money', 'Save up', 'Save money for something.', 'I\'m saving up for a car.', 'She saved up for months to travel.'],
   ['money', 'Cut back', 'Reduce spending.', 'We\'re cutting back on takeaway food.', 'The company cut back on staff.'],
@@ -318,35 +318,35 @@ export const PHRASAL_RAW = [
   ['money', 'Go down', 'Decrease; sink.', 'Prices have gone down this month.', 'The ship went down in a storm.'],
   ['money', 'Come down', 'Decrease; fall.', 'Petrol prices have come down.', 'The rain came down all night.'],
 
-  // ---------- Time & Patience ----------
+  
   ['time', 'Hold on', 'Wait a moment; hold tightly.', 'Hold on, let me check.', 'Hold on to the rail.'],
   ['time', 'Hold on to', 'Keep; not let go.', 'Hold on to your ticket.', 'Hold on to your dreams.'],
   ['time', 'Wait for', 'Stay until someone or something arrives.', 'I\'m waiting for the bus.', 'Wait for me!'],
   ['time', 'Be over', 'End; be finished.', 'The party is over.', 'Is the exam over yet?'],
   ['time', 'Show up (for)', 'Arrive; attend.', 'He showed up an hour late.', 'Only five people showed up for the meeting.'],
 
-  // ---------- Teamwork & Unity ----------
+  
   ['teamwork', 'Hold together', 'Stay united; stay in one piece.', 'The team held together after the loss.', 'This old chair barely holds together.'],
   ['teamwork', 'Hang together', 'Stay united; make sense as a whole.', 'We have to hang together.', 'His story doesn\'t hang together.'],
   ['teamwork', 'Join together', 'Unite; connect.', 'Neighbours joined together to clean the park.', 'Join the two pieces together.'],
   ['teamwork', 'Put together', 'Assemble; organise or create.', 'It took two hours to put the bed together.', 'She put together a great team.'],
 
-  // ---------- Actions & Consequences ----------
+  
   ['consequences', 'Turn out', 'Result in; happen in the end; attend.', 'It turned out to be a great day.', 'Thousands turned out for the concert.'],
   ['consequences', 'End up', 'Finally be in a situation.', 'We got lost and ended up on a farm.', 'If you don\'t study, you\'ll end up failing.'],
   ['consequences', 'Bring about', 'Cause to happen.', 'The internet brought about huge changes.', 'What brought about this decision?'],
   ['consequences', 'Come about', 'Happen.', 'How did the accident come about?', 'The idea came about by chance.'],
   ['consequences', 'Come in for', 'Receive (criticism or praise).', 'The plan came in for a lot of criticism.', 'She came in for praise from her boss.'],
 
-  // ---------- Describing People ----------
+  
   ['people', 'Show off', 'Try to impress others; display proudly.', 'He loves showing off his new car.', 'Stop showing off!'],
   ['people', 'Stand out', 'Be easy to notice; be better than others.', 'Her red coat stood out in the crowd.', 'Make your CV stand out.'],
 
-  // ---------- Caution & Planning ----------
+  
   ['caution', 'Look out (for)', 'Be careful; watch for something.', 'Look out! There\'s a car coming.', 'Look out for my sister at the airport.'],
   ['caution', 'Watch out', 'Be careful.', 'Watch out! The floor is wet.', 'Watch out for ice on the road.'],
 
-  // ---------- Opportunity & Luck ----------
+  
   ['opportunity', 'Go after', 'Try to get or achieve; chase.', 'Go after your dreams.', 'The police went after the thief.'],
   ['opportunity', 'Pass up', 'Not take an opportunity.', 'Don\'t pass up this chance.', 'She passed up a job in London.'],
 ];

@@ -57,7 +57,7 @@ const SECTIONS = {
   },
 };
 
-// Colour for each type's label chip
+
 const TYPE_COLORS = {
   proverb: 'secondary',
   idiom: 'success',
