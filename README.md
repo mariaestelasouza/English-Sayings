@@ -74,7 +74,7 @@ The admin page (and `/api/stats`) always asks for a username and password.
 - Set `ADMIN_USER` and `ADMIN_PASSWORD` locally or in Netlify's private environment variables.
 - Never commit real credentials.
 - Deploy the app and functions from the repository through Netlify.
-- Connect a Netlify Database to the project. Netlify provides the database connection variables used by `@netlify/neon`.
+- The counter uses Netlify Database through `@netlify/database`. The database is created automatically the first time the project connects to it, so no setup or connection string is needed.
 
 Use a strong password and HTTPS for the deployed admin login. If the counter is unavailable, the app still works and visits are not counted.
 
@@ -85,21 +85,36 @@ The app explains what is counted in its **Privacy notice** (link at the bottom o
 1. Push the repository to GitHub.
 2. Create a Netlify project linked to the GitHub repository.
 3. Confirm the build settings use `npm run build` and publish the `dist` directory.
-4. Add a Netlify Database and connect it to the project.
-5. Set `ADMIN_USER` and `ADMIN_PASSWORD` as private Netlify environment variables.
-6. Deploy the project.
+4. Set `ADMIN_USER` and `ADMIN_PASSWORD` as private Netlify environment variables.
+5. Deploy the project. Netlify applies the database migrations before the deploy goes live.
 
 The `netlify.toml` file configures the Vite build, Netlify Functions, API routes and `/admin` route.
+
+## Database schema and migrations
+
+The database tables are defined with [Drizzle ORM](https://orm.drizzle.team/) in `db/schema.ts`. After changing the schema, generate a migration:
+
+```bash
+npx drizzle-kit generate --name add_something
+```
+
+Migrations are saved in `netlify/database/migrations/` and Netlify applies them automatically on every deploy. Never edit a migration that has already been deployed. Add a new one instead.
 
 ## Project structure
 
 ```
+db/
+├── schema.ts            Database tables (Drizzle ORM)
+└── index.ts             Drizzle database client
 netlify/
+├── database/
+│   └── migrations/      SQL migrations, applied by Netlify on deploy
 └── functions/
     ├── api.mjs          /api/visit and /api/stats
     ├── admin.mjs        /admin
     ├── _usage-auth.mjs  Basic authentication
-    └── _usage-db.mjs    Postgres storage
+    └── _usage-db.mjs    Netlify Database storage
+drizzle.config.ts
 netlify.toml
 .env.example
 src/
@@ -149,7 +164,7 @@ Before using this app commercially, rewrite any source lists in your own words a
 - [Vite](https://vite.dev/) 6
 - [MUI (Material UI)](https://mui.com/)
 - [Netlify Functions](https://docs.netlify.com/functions/overview/)
-- [Netlify Database](https://docs.netlify.com/database/overview/)
+- [Netlify Database](https://docs.netlify.com/database/overview/) with [Drizzle ORM](https://orm.drizzle.team/)
 - Node.js
 
 
