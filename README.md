@@ -135,10 +135,9 @@ Before using this app commercially, rewrite any source lists in your own words a
 - [MUI (Material UI)](https://mui.com/)
 - Python 3 (usage counter)
 
-## Licence
-
-[000 - Choose a licence, e.g. "All rights reserved" or MIT]
 
 ## Author
 
-[000 - Your name and contact or LinkedIn link]
+Maria Estela Souza  
+- [Linkedin](https://www.linkedin.com/in/maria-estela-souza-737ab216a/)
+
