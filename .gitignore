@@ -35,5 +35,4 @@ Thumbs.db
 .vercel/
 .netlify/
 
-# Usage counter database
-server/*.db
+__pycache__/

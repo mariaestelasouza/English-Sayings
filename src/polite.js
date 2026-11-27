@@ -1,6 +1,6 @@
-// "How to Say It Professionally": rude -> respectful English.
-// Format: [categoryKey, respectful, rude, whyItWorks, example1, example2, fromOriginalList]
-// fromOriginalList = true for the 20 phrases from the provided image, false for extra phrases added.
+
+
+
 
 export const POLITE_CATEGORIES = {
   polDisagree: { name: 'Disagreeing Politely', emoji: '🙋' },
@@ -21,7 +21,7 @@ export const POLITE_CATEGORIES = {
 };
 
 export const POLITE_RAW = [
-  // ---------- From the image ----------
+  
   ['polRequests', 'Could we keep this brief?', 'You talk too much.', 'Focuses on the time, not on the person\'s behaviour.',
     'I have another meeting at 3. Could we keep this brief?',
     'Could we keep this brief? We only need a yes or no today.', true],
@@ -83,7 +83,7 @@ export const POLITE_RAW = [
     'Could you explain that a little more? I want to understand.',
     'Interesting. Could you explain that a little more?', true],
 
-  // ---------- Disagreeing Politely ----------
+  
   ['polDisagree', 'I see your point, but have we considered...?', 'That idea is bad.', 'Shows respect, then adds your idea as a question.',
     'I see your point, but have we considered the cost?',
     'I see your point, but have we considered asking the customers?', false],
@@ -100,7 +100,7 @@ export const POLITE_RAW = [
     "We're stuck. Could we look at this from another angle?",
     'Could we look at this from another angle, like the customer\'s?', false],
 
-  // ---------- Requests & Instructions ----------
+  
   ['polRequests', 'Would you mind...?', 'Do this.', 'Turns an order into a polite request.',
     'Would you mind closing the window?',
     'Would you mind checking this before I send it?', false],
@@ -126,7 +126,7 @@ export const POLITE_RAW = [
     'Sorry, may I finish my point? Then I\'d love to hear yours.',
     'Sorry, may I finish my point first?', false],
 
-  // ---------- Saying No & Being Busy ----------
+  
   ['polNo', "Unfortunately, I won't be able to.", 'No.', 'Softens a refusal with "unfortunately".',
     "Unfortunately, I won't be able to join the dinner.",
     "Unfortunately, I won't be able to finish it by today.", false],
@@ -149,7 +149,7 @@ export const POLITE_RAW = [
     "I'm focused on the launch. Could we revisit this next week?",
     'Good idea. Could we revisit this next week?', false],
 
-  // ---------- Asking for Clarity ----------
+  
   ['polClarity', "Sorry, I didn't quite catch that.", 'What?', 'A polite way to ask someone to repeat.',
     "Sorry, I didn't quite catch that. Could you say it again?",
     "Sorry, I didn't quite catch your name.", false],
@@ -166,7 +166,7 @@ export const POLITE_RAW = [
     "My English isn't perfect yet. Could you say that a little more slowly?",
     'Could you say that a little more slowly, please?', false],
 
-  // ---------- Mistakes, Blame & Conflict ----------
+  
   ['polConflict', 'I think there may be an error here.', 'You made a mistake.', 'Points to the problem, not the person.',
     'I think there may be an error here in the total.',
     'I think there may be an error here. Could you check?', false],
@@ -189,7 +189,7 @@ export const POLITE_RAW = [
     "I'd like to understand your side. What happened?",
     "Before I respond, I'd like to understand your side.", false],
 
-  // ---------- Boundaries & Space ----------
+  
   ['polBoundaries', "I'd prefer not to discuss that.", 'Mind your own business.', 'Protects your privacy politely.',
     "I'd prefer not to discuss that at work.",
     "Thanks for asking, but I'd prefer not to discuss that.", false],
@@ -203,7 +203,7 @@ export const POLITE_RAW = [
     "Just so you know, I'm offline after 6, but I'll reply first thing tomorrow.",
     "I'm offline after 6, but I'll reply first thing tomorrow morning.", false],
 
-  // ---------- Giving Feedback ----------
+  
   ['polFeedback', 'This is a good start. Here are a few suggestions.', 'This is bad.', 'Starts with something positive, then helps improve.',
     'This is a good start. Here are a few suggestions to make it stronger.',
     'This is a good start. Here are a few suggestions for the design.', false],
@@ -223,7 +223,7 @@ export const POLITE_RAW = [
     "This is a tricky task. Let's work on this together.",
     "Don't worry, let's work on this together.", false],
 
-  // ---------- Reminders & Follow-ups ----------
+  
   ['polReminders', 'Just a friendly reminder about...', "You forgot again.", 'Reminds without blaming.',
     'Just a friendly reminder about tomorrow\'s meeting at 9.',
     'Just a friendly reminder about the invoice due Friday.', false],
@@ -240,7 +240,7 @@ export const POLITE_RAW = [
     'Could you let me know by Friday if you can come?',
     'Could you let me know by Friday so I can book the room?', false],
 
-  // ---------- Customers & Complaints ----------
+  
   ['polCustomers', "I'm sorry for the inconvenience.", "It's not a big deal.", 'Acknowledges the customer\'s problem.',
     "I'm sorry for the inconvenience. We'll send a replacement today.",
     "I'm sorry for the inconvenience. Let me fix that.", false],
@@ -260,7 +260,7 @@ export const POLITE_RAW = [
     'Unfortunately, that option isn\'t available, but we have a similar one.',
     'Unfortunately, that option isn\'t available, but I can suggest another.', false],
 
-  // ---------- Meetings & Calls ----------
+  
   ['polMeetings', "Could we stick to the agenda?", "This is off topic.", 'Brings the meeting back on track by pointing to the plan, not the person.',
     "Interesting point, but could we stick to the agenda? We have 20 minutes left.",
     "Could we stick to the agenda and pick this up afterwards?", false],
@@ -286,7 +286,7 @@ export const POLITE_RAW = [
     "Just so you know, I have a hard stop at 3.",
     "Sorry, I have a hard stop at 3, so let's cover the main point first.", false],
 
-  // ---------- Emails & Messages ----------
+  
   ['polEmails', "Please see my email below.", "Read my email properly.", 'Points to the earlier message without blaming the reader.',
     "Please see my email below for the delivery address.",
     "Hi Ana, please see my email below. The answer is in the second paragraph.", false],
@@ -309,7 +309,7 @@ export const POLITE_RAW = [
     "Please let me know if you have questions. Kind regards, Tom",
     "I look forward to hearing from you. Kind regards, Maria", false],
 
-  // ---------- Talking to Your Manager ----------
+  
   ['polManager', "Could we talk about my workload?", "I have too much work.", 'Opens a conversation instead of complaining.',
     "Do you have 15 minutes this week? Could we talk about my workload?",
     "Could we talk about my workload? I want to make sure the important tasks get done.", false],
@@ -335,7 +335,7 @@ export const POLITE_RAW = [
     "I don't have the skills for this yet. Could I get some training?",
     "I'd love to help with the budget. I don't have the skills for this yet. Could I get some training?", false],
 
-  // ---------- Working with Colleagues ----------
+  
   ['polTeam', "Do you have a minute to help me with something?", "I need you now.", 'Checks if the person is free before asking.',
     "Do you have a minute to help me with something on the system?",
     "Hi Raj, do you have a minute to help me with something?", false],
@@ -358,7 +358,7 @@ export const POLITE_RAW = [
     "Thanks for your help with this. I really appreciate it.",
     "The file is perfect. Thanks for your help with this. I really appreciate it.", false],
 
-  // ---------- Time & Deadlines ----------
+  
   ['polTime', "Could we push the deadline to Friday?", "I can't finish this on time.", 'Proposes a solution instead of only stating the problem.',
     "The data arrived late. Could we push the deadline to Friday?",
     "Could we push the deadline to Friday so I can do it properly?", false],
@@ -378,7 +378,7 @@ export const POLITE_RAW = [
     "To meet that date, we'd need to drop something else. Which task can wait?",
     "We can try. To meet that date, we'd need to drop something else.", false],
 
-  // ---------- Apologising & Thanking ----------
+  
   ['polApologies', "I apologise for the confusion.", "Sorry, my bad.", 'A more professional apology for work.',
     "I apologise for the confusion. The correct date is the 12th.",
     "I apologise for the confusion in my last message.", false],
@@ -395,7 +395,7 @@ export const POLITE_RAW = [
     "I know you're busy. I appreciate you taking the time.",
     "Thanks for meeting with me. I appreciate you taking the time.", false],
 
-  // ---------- More: Disagreeing, Saying No, Feedback, Customers ----------
+  
   ['polDisagree', "I have a slightly different view on this.", "I disagree.", 'Softens disagreement with "slightly".',
     "I have a slightly different view on this. Can I share it?",
     "Thanks, Anna. I have a slightly different view on this.", false],

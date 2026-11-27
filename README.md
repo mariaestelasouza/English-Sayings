@@ -34,6 +34,14 @@ npm run dev
 
 Then open the address shown in the terminal, usually http://localhost:5173/. Press `Ctrl + C` in the terminal to stop it.
 
+To run the Vite app together with the Netlify Functions locally:
+
+```bash
+npm run dev:netlify
+```
+
+Then open http://localhost:8888/.
+
 Build for production:
 
 ```bash
@@ -48,13 +56,7 @@ npm run preview
 
 ## Usage counter (visits per day)
 
-A small Python server counts how many times the app is opened each day, and how many requests each endpoint receives. It uses only the Python standard library, so there is nothing to install. Only numbers are stored, never IP addresses, cookies or personal data.
-
-Start it in a second terminal, alongside `npm run dev`:
-
-```bash
-python3 server/server.py
-```
+A small JavaScript serverless backend counts how many times the app is opened each day and how many requests each endpoint receives. It runs as Netlify Functions and stores counts in Netlify Database (Postgres). Only numbers are stored, never IP addresses, cookies or personal data.
 
 | Endpoint | What it does |
 |---|---|
@@ -62,31 +64,59 @@ python3 server/server.py
 | `GET /api/stats` | Counts per day and per endpoint, as JSON |
 | `GET /admin` | Admin page with visits per day and requests per endpoint |
 
-Open the admin page at http://localhost:5173/admin (through the app) or http://127.0.0.1:8787/admin (directly). Unknown paths are counted as "other (not found)".
-
-The counts are saved in `server/usage.db` (not saved in git).
+Open the admin page at http://localhost:8888/admin.
 
 ### Admin login
 
 The admin page (and `/api/stats`) always asks for a username and password.
 
-- **First start:** if no password is set, the server creates a random one, saves it in `server/.env`, and prints it once in the terminal. The username is `admin`.
-- **Choose your own:** copy `server/.env.example` to `server/.env`, set `ADMIN_PASSWORD`, and restart the server.
-- **Forgot it?** Open `server/.env` to see it, or delete the `ADMIN_PASSWORD` line and restart to get a new one.
-- `server/.env` is ignored by git, so the password is never committed.
-- A wrong password waits 1 second before answering, to slow down guessing.
-- Your browser remembers the login until you close it. To log out, close the browser window or use a private window.
+- Copy `.env.example` to `.env`.
+- Set `ADMIN_USER` and `ADMIN_PASSWORD` locally or in Netlify's private environment variables.
+- Never commit real credentials.
+- Deploy the app and functions from the repository through Netlify.
+- The counter uses Netlify Database through `@netlify/database`. The database is created automatically the first time the project connects to it, so no setup or connection string is needed.
 
-When you put the server online, use a strong password and HTTPS (most hosting services provide HTTPS automatically), because the browser sends the password with every admin request. If the counter is not running, the app still works; visits just aren't counted.
+Use a strong password and HTTPS for the deployed admin login. If the counter is unavailable, the app still works and visits are not counted.
 
 The app explains what is counted in its **Privacy notice** (link at the bottom of the page).
+
+## Deploy to Netlify
+
+1. Push the repository to GitHub.
+2. Create a Netlify project linked to the GitHub repository.
+3. Confirm the build settings use `npm run build` and publish the `dist` directory.
+4. Set `ADMIN_USER` and `ADMIN_PASSWORD` as private Netlify environment variables.
+5. Deploy the project. Netlify applies the database migrations before the deploy goes live.
+
+The `netlify.toml` file configures the Vite build, Netlify Functions, API routes and `/admin` route.
+
+## Database schema and migrations
+
+The database tables are defined with [Drizzle ORM](https://orm.drizzle.team/) in `db/schema.ts`. After changing the schema, generate a migration:
+
+```bash
+npx drizzle-kit generate --name add_something
+```
+
+Migrations are saved in `netlify/database/migrations/` and Netlify applies them automatically on every deploy. Never edit a migration that has already been deployed. Add a new one instead.
 
 ## Project structure
 
 ```
-server/
-├── server.py      Usage counter and admin page (Python, standard library only)
-└── .env.example   Example admin login (copy to server/.env)
+db/
+├── schema.ts            Database tables (Drizzle ORM)
+└── index.ts             Drizzle database client
+netlify/
+├── database/
+│   └── migrations/      SQL migrations, applied by Netlify on deploy
+└── functions/
+    ├── api.mjs          /api/visit and /api/stats
+    ├── admin.mjs        /admin
+    ├── _usage-auth.mjs  Basic authentication
+    └── _usage-db.mjs    Netlify Database storage
+drizzle.config.ts
+netlify.toml
+.env.example
 src/
 ├── usage.js       Sends one visit count when the app opens
 ├── App.jsx        Main app (MUI): tabs, search, filters, dropdowns, privacy notice
@@ -133,12 +163,13 @@ Before using this app commercially, rewrite any source lists in your own words a
 - [React](https://react.dev/) 18
 - [Vite](https://vite.dev/) 6
 - [MUI (Material UI)](https://mui.com/)
-- Python 3 (usage counter)
+- [Netlify Functions](https://docs.netlify.com/functions/overview/)
+- [Netlify Database](https://docs.netlify.com/database/overview/) with [Drizzle ORM](https://orm.drizzle.team/)
+- Node.js
 
-## Licence
-
-[000 - Choose a licence, e.g. "All rights reserved" or MIT]
 
 ## Author
 
-[000 - Your name and contact or LinkedIn link]
+Maria Estela Souza  
+- [Linkedin](https://www.linkedin.com/in/maria-estela-souza-737ab216a/)
+

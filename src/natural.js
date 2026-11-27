@@ -1,5 +1,5 @@
-// "Everyday English -> Natural English" from the provided image.
-// Format: [categoryKey, naturalPhrase, plainVersion, meaning, example1, example2]
+
+
 
 export const NATURAL_RAW = [
   ['everyday', "I'm all set", "I'm ready", 'You are fully prepared and ready to go.',

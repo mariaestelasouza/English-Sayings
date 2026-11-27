@@ -57,7 +57,7 @@ const SECTIONS = {
   },
 };
 
-// Colour for each type's label chip
+
 const TYPE_COLORS = {
   proverb: 'secondary',
   idiom: 'success',
@@ -100,9 +100,9 @@ function PrivacyNotice({ open, onClose }) {
         <Typography variant="subtitle2" gutterBottom>
           Questions
         </Typography>
-        <Typography>Contact: [000 - Contact email for privacy questions]</Typography>
+        <Typography>Contact: estela.souza.98@gmail.com </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-          Last updated: [000 - Date]
+          Last updated: 26/11/2026
         </Typography>
       </DialogContent>
       <DialogActions>
