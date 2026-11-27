@@ -340,25 +340,36 @@ export default function App() {
           </Stack>
         </Stack>
 
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
-          <Chip
-            label={`All categories (${byType.length})`}
-            color="primary"
-            variant={category === 'all' ? 'filled' : 'outlined'}
-            onClick={() => setCategory('all')}
-          />
-          {Object.entries(CATEGORIES)
-            .filter(([key]) => counts[key])
-            .map(([key, cat]) => (
-              <Chip
-                key={key}
-                label={`${cat.emoji} ${cat.name} (${counts[key]})`}
-                color="primary"
-                variant={category === key ? 'filled' : 'outlined'}
-                onClick={() => setCategory(key)}
-              />
-            ))}
-        </Box>
+        {category === 'all' ? (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
+            <Chip label={`All categories (${byType.length})`} color="primary" variant="filled" />
+            {Object.entries(CATEGORIES)
+              .filter(([key]) => counts[key])
+              .map(([key, cat]) => (
+                <Chip
+                  key={key}
+                  label={`${cat.emoji} ${cat.name} (${counts[key]})`}
+                  color="primary"
+                  variant="outlined"
+                  onClick={() => setCategory(key)}
+                />
+              ))}
+          </Box>
+        ) : (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 1, mb: 3 }}>
+            <Chip
+              label={`${CATEGORIES[category].emoji} ${CATEGORIES[category].name} (${counts[category] || 0})`}
+              color="primary"
+              variant="filled"
+              onClick={() => setCategory('all')}
+              onDelete={() => setCategory('all')}
+              title="Remove filter"
+            />
+            <Button size="small" endIcon={<ExpandMoreIcon />} onClick={() => setCategory('all')}>
+              Show all categories
+            </Button>
+          </Box>
+        )}
 
         <Box component="main">
           {grouped.length === 0 && (
