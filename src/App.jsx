@@ -102,7 +102,7 @@ function PrivacyNotice({ open, onClose }) {
         </Typography>
         <Typography>Contact: estela.souza.98@gmail.com </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-          Last updated: 26/11/2026
+          Last updated: 27/11/2026
         </Typography>
       </DialogContent>
       <DialogActions>
