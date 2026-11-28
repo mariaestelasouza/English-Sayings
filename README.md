@@ -46,6 +46,17 @@ Preview the production build:
 npm run preview
 ```
 
+## Usage admin on Heroku
+
+Set `DATABASE_URL` to the Neon Postgres connection string in Heroku's Config
+Vars. Keep any query parameters from Neon and use `sslmode=verify-full` to
+verify the database server's certificate and hostname. Set `ADMIN_USER` and
+`ADMIN_PASSWORD` in the same Config Vars. After deploying, open `/admin`
+over HTTPS and sign in with those credentials. The server creates the
+`requests` table on first use. Only daily counts for known endpoints are
+stored. Each app load sends a visit event, so visits are page loads rather
+than unique people. Previous Netlify counts require a separate import.
+
 ## Project structure
 
 ```
