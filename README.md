@@ -34,14 +34,6 @@ npm run dev
 
 Then open the address shown in the terminal, usually http://localhost:5173/. Press `Ctrl + C` in the terminal to stop it.
 
-To run the Vite app together with the Netlify Functions locally:
-
-```bash
-npm run dev:netlify
-```
-
-Then open http://localhost:8888/.
-
 Build for production:
 
 ```bash
@@ -54,72 +46,11 @@ Preview the production build:
 npm run preview
 ```
 
-## Usage counter (visits per day)
-
-A small JavaScript serverless backend counts how many times the app is opened each day and how many requests each endpoint receives. It runs as Netlify Functions and stores counts in Netlify Database (Postgres). Only numbers are stored, never IP addresses, cookies or personal data.
-
-| Endpoint | What it does |
-|---|---|
-| `POST /api/visit` | The app calls this once each time it is opened |
-| `GET /api/stats` | Counts per day and per endpoint, as JSON |
-| `GET /admin` | Admin page with visits per day and requests per endpoint |
-
-Open the admin page at http://localhost:8888/admin.
-
-### Admin login
-
-The admin page (and `/api/stats`) always asks for a username and password.
-
-- Copy `.env.example` to `.env`.
-- Set `ADMIN_USER` and `ADMIN_PASSWORD` locally or in Netlify's private environment variables.
-- Never commit real credentials.
-- Deploy the app and functions from the repository through Netlify.
-- The counter uses Netlify Database through `@netlify/database`. The database is created automatically the first time the project connects to it, so no setup or connection string is needed.
-
-Use a strong password and HTTPS for the deployed admin login. If the counter is unavailable, the app still works and visits are not counted.
-
-The app explains what is counted in its **Privacy notice** (link at the bottom of the page).
-
-## Deploy to Netlify
-
-1. Push the repository to GitHub.
-2. Create a Netlify project linked to the GitHub repository.
-3. Confirm the build settings use `npm run build` and publish the `dist` directory.
-4. Set `ADMIN_USER` and `ADMIN_PASSWORD` as private Netlify environment variables.
-5. Deploy the project. Netlify applies the database migrations before the deploy goes live.
-
-The `netlify.toml` file configures the Vite build, Netlify Functions, API routes and `/admin` route.
-
-## Database schema and migrations
-
-The database tables are defined with [Drizzle ORM](https://orm.drizzle.team/) in `db/schema.ts`. After changing the schema, generate a migration:
-
-```bash
-npx drizzle-kit generate --name add_something
-```
-
-Migrations are saved in `netlify/database/migrations/` and Netlify applies them automatically on every deploy. Never edit a migration that has already been deployed. Add a new one instead.
-
 ## Project structure
 
 ```
-db/
-├── schema.ts            Database tables (Drizzle ORM)
-└── index.ts             Drizzle database client
-netlify/
-├── database/
-│   └── migrations/      SQL migrations, applied by Netlify on deploy
-└── functions/
-    ├── api.mjs          /api/visit and /api/stats
-    ├── admin.mjs        /admin
-    ├── _usage-auth.mjs  Basic authentication
-    └── _usage-db.mjs    Netlify Database storage
-drizzle.config.ts
-netlify.toml
-.env.example
 src/
-├── usage.js       Sends one visit count when the app opens
-├── App.jsx        Main app (MUI): tabs, search, filters, dropdowns, privacy notice
+├── App.jsx        Main app (MUI): tabs, search and filters
 ├── main.jsx       React entry point
 ├── styles.css     Styles (light and dark mode)
 ├── data.js        Categories, types and proverbs; combines all content into one list
@@ -163,8 +94,6 @@ Before using this app commercially, rewrite any source lists in your own words a
 - [React](https://react.dev/) 18
 - [Vite](https://vite.dev/) 6
 - [MUI (Material UI)](https://mui.com/)
-- [Netlify Functions](https://docs.netlify.com/functions/overview/)
-- [Netlify Database](https://docs.netlify.com/database/overview/) with [Drizzle ORM](https://orm.drizzle.team/)
 - Node.js
 
 

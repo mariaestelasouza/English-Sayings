@@ -33,6 +33,5 @@ Thumbs.db
 
 # Deployment
 .vercel/
-.netlify/
 
 __pycache__/

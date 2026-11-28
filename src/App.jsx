@@ -8,11 +8,6 @@ import {
   Chip,
   Container,
   CssBaseline,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Link,
   InputAdornment,
   Paper,
   Stack,
@@ -33,7 +28,6 @@ import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import { CATEGORIES, SAYINGS, TYPES, TYPE_TAGS } from './data.js';
 
 const PRO_ITEMS = SAYINGS.filter((s) => s.type === 'polite');
@@ -67,52 +61,6 @@ const TYPE_COLORS = {
 };
 
 const MEANING_LABEL = { business: 'When to use', polite: 'Why it works' };
-
-function PrivacyNotice({ open, onClose }) {
-  return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <PrivacyTipIcon color="primary" /> Privacy notice
-      </DialogTitle>
-      <DialogContent dividers>
-        <Typography variant="subtitle2" gutterBottom>
-          What we count
-        </Typography>
-        <Typography sx={{ mb: 2 }}>
-          Each time the app is opened, we add 1 to a counter for that day. We also count how many requests each part of
-          our server receives per day (for example, "app opened"). That is all we collect: numbers per day.
-        </Typography>
-        <Typography variant="subtitle2" gutterBottom>
-          What we do not collect
-        </Typography>
-        <Typography component="ul" sx={{ mt: 0, pl: 3 }}>
-          <li>No names, emails or accounts</li>
-          <li>No IP addresses or location</li>
-          <li>No cookies or tracking IDs</li>
-          <li>No record of what you search or which phrases you open</li>
-        </Typography>
-        <Typography variant="subtitle2" gutterBottom>
-          Why we count
-        </Typography>
-        <Typography sx={{ mb: 2 }}>
-          To see how many people use the app each day, so we know if it is helpful and worth improving.
-        </Typography>
-        <Typography variant="subtitle2" gutterBottom>
-          Questions
-        </Typography>
-        <Typography>Contact: estela.souza.98@gmail.com </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-          Last updated: 27/11/2026
-        </Typography>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose} variant="contained">
-          Got it
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-}
 
 function SayingItem({ item, expanded, onToggle }) {
   const isPolite = item.type === 'polite';
@@ -201,8 +149,6 @@ export default function App() {
   const [type, setType] = useState('all');
   const [category, setCategory] = useState('all');
   const [openIds, setOpenIds] = useState(() => new Set());
-  const [privacyOpen, setPrivacyOpen] = useState(false);
-
   const byType = useMemo(
     () =>
       section === 'pro'
@@ -397,13 +343,6 @@ export default function App() {
         <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mt: 5 }}>
           "Extra" marks entries added beyond the original source lists.
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mt: 1 }}>
-          We only count visits per day, nothing personal.{' '}
-          <Link component="button" variant="body2" onClick={() => setPrivacyOpen(true)}>
-            Privacy notice
-          </Link>
-        </Typography>
-        <PrivacyNotice open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
       </Container>
     </ThemeProvider>
   );
